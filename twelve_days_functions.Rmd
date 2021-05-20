@@ -1,6 +1,6 @@
 ---
 title: "Lab: The 12 Days of Christmas"
-author: "Katherine Chan"
+author: "Katherine Chan, Allie Malmberg, Alana Buckman, Stephanie Lee, Evan Rozhon"
 output:
   prettydoc::html_pretty:
     theme: tactile
@@ -22,11 +22,10 @@ library(english)
 
 ### A Test Dataset
 
-Run the code below to load up a dataset called `xmas` that contains the crucial 
-information about the gifts in the song. We will use this dataset to test out
-our functions as we work on them.
+A dataset called `xmas` contains the crucial information about the gifts in the song. 
+We will use this dataset to test out our functions as we work on them.
 
-```{r}
+```{r, include=FALSE}
 xmas <- read.csv("https://www.dropbox.com/s/e584pryn8evm1gz/xmas.csv?dl=1")
 ```
 
@@ -67,26 +66,6 @@ return(output)
 }
 ```
 
-*Hint 1:* Note that the gifts on days six and nine have unusual pluralizations.
-You may assume that in other datasets, there will be no special cases besides
-these types.
-
-*Hint 2:*  The following small example may be useful to you:
-
-```{r, eval = TRUE}
-my_names <- c("Kimberly", "Trini", "Jason", "Billy", "Zach", "Tommy")
-
-my_names %>% 
-  str_replace("y$", "ies")
-```
-
-
-**Important:**  You should **absolutely not** "hard-code" anything into this 
-function; this function should work in general, not just for the items in the
-12 Days of Christmas.  For example, the word "rings" should not appear anywhere
-in the function.  I should be able to give it any gift and any day, and get back
-the plural of that gift.
-
 
 ### Test Your Function
 
@@ -111,20 +90,13 @@ purrr::map_chr(xmas$Gift.Item, pluralize_gift)
 Write a function called `make_phrase` that takes as input the necessary information, 
 and returns a phrase.  For example, 
 
-```{r}
+```
 make_phrase(num = 10, 
             num_word = "ten", 
             item = "lord", 
             verb = "a-leaping", 
             adjective = "", 
             location = "")
-
-make_phrase(num = 1, 
-            num_word = "one", 
-            item = "partridge", 
-            verb = "", 
-            adjective = "", 
-            location = "in a pear tree")
 ```
 
 should return
@@ -170,7 +142,24 @@ make_phrase <- function(num, num_word, item, verb, adjective, location) {
 ```
 
 
+
 # Test Your Function
+
+```{r}
+make_phrase(num = 10, 
+            num_word = "ten", 
+            item = "lord", 
+            verb = "a-leaping", 
+            adjective = "", 
+            location = "")
+
+make_phrase(num = 1, 
+            num_word = "one", 
+            item = "partridge", 
+            verb = "", 
+            adjective = "", 
+            location = "in a pear tree")
+```
 
 Try your function out on the `xmas` data, by making a new variable containing
 the daily phrases.
@@ -191,7 +180,7 @@ xmas <- xmas %>%
                                 location = Location), 
                            make_phrase)
   )
-
+xmas %>% select(Full.Phrase)
 ```
 
 
@@ -294,21 +283,3 @@ map_chr(1:12, ~sing_line(xmas2, .x, Full.Phrase)) %>%
 ## Step Five: Show Me Your Work! 
 
 #### Get it on GitHub
-
-Once you are done with all the functions, make sure you have **pushed** your
-work to GitHub.
-
-Make sure your repository contains your completed RMarkdown document and
-knitted HTML. 
-
-- Your HTML should **only** show the code for your functions and output from 
-testing / verifying that your functions perform as they should. 
-
-__If you used GitHub to store your work:__
-
-Submit the link to your GitHub repository in the Lab 8 assignment portal. 
-
-__If you downloaded the compressed folder and did not use GitHub:__
-
-Submit **both** your RMarkdown file and knitted HTML file
-
