@@ -37,9 +37,6 @@ Note that the gifts are listed in singular: for example, on day five the
 narrator receives "five golden rings", but the entry in the dataset for the gift
 on day 5 simply says "ring".  
 
-Using the skeleton of the `pluralize_gift()` function, complete the code so that 
-the function takes a gift and returns the appropriate plural. 
-
 ```{r}
 # Function that takes a noun and makes it plural
 # Arguments -- gift -- A string or vector of strings
@@ -88,22 +85,7 @@ purrr::map_chr(xmas$Gift.Item, pluralize_gift)
 ## Step Two: Creating sentences
 
 Write a function called `make_phrase` that takes as input the necessary information, 
-and returns a phrase.  For example, 
-
-```
-make_phrase(num = 10, 
-            num_word = "ten", 
-            item = "lord", 
-            verb = "a-leaping", 
-            adjective = "", 
-            location = "")
-```
-
-should return
-
-```
-"ten lords a-leaping"
-```
+and returns a phrase.  
 
 ```{r}
 make_phrase <- function(num, num_word, item, verb, adjective, location) {
@@ -241,17 +223,6 @@ sing_line(xmas,
           phrase_col = Full.Phrase)
 
 ```
-
-should return
-
-```
-On the second day of Christmas, my true love sent to me,
-two turtle doves 
-and a partridge in a pear tree.
-```
-
-*Hint:*  The `{{phrase_col}}` part, which I provided for you, lets you use 
-column names as arguments to a function.  Don't delete that line of code!
 
 ---
 
